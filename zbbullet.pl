@@ -8,9 +8,7 @@ use DBI;
 
 $| = 1;
 
-#zmDbgInit( "myscript", level=>0, to_log=>0, to_syslog=>0, to_term=>1 );
 
-#my $dbh = DBI->connect( "DBI:mysql:database=".ZM_DB_NAME.";host=".ZM_DB_HOST, ZM_DB_USER, ZM_DB_PASS );
 my $dbh = zmDbConnect();
 
 my $sql = "select M.*, max(E.Id) as LastEventId from Monitors as M left join Events as E on M.Id = E.MonitorId where M.Function != 'None' group by (M.Id)";
